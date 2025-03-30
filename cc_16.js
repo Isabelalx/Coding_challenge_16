@@ -32,3 +32,25 @@ async function fetchProductsAsync() {
       handleError(error); // If an error occurs, passes it to handleError(error)
     }
   }
+
+// Task 4: Display the Products
+function displayProducts(products) {
+    const container = document.getElementById("product-container"); // Selecting #product-container 
+    container.innerHTML = ""; // Clearing the container before adding new products
+  
+    products.slice(0, 5).forEach(product => { // Limiting to 5 products
+      const {name, price, image} = product.fields; 
+      
+      const productElement = document.createElement("div");
+      productElement.classList.add("product");
+  
+      productElement.innerHTML = `
+        <img src="${image[0].url}" alt="${name}">
+        <h2>${name}</h2>
+        <p>$${(price / 100).toFixed(2)}</p>
+      `;
+  
+      container.appendChild(productElement); // Appending product to the main container
+    });
+  }
+  
